@@ -1,0 +1,32 @@
+<form id="subscribe-form" action="/subscribe" method="post">
+    @csrf <!-- Include CSRF token field -->
+    <input type="email" name="email" id="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</form>
+
+<div id="subscribe-message"></div>
+<script>
+    document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        var form = this;
+        var formData = new FormData(form); // Create form data object
+        var xhr = new XMLHttpRequest(); // Create XMLHttpRequest object
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // If successful response, display success message
+                    document.getElementById('subscribe-message').innerHTML = 'Subscription successful';
+                    form.reset(); // Clear form fields
+                } else {
+                    // If error response, display error message
+                    document.getElementById('subscribe-message').innerHTML = 'Error: ' + xhr.responseText;
+                }
+            }
+        };
+
+        xhr.open(form.method, form.action, true); // Open connection
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); // Set request header
+        xhr.send(formData); // Send form data
+    });
+</script>
