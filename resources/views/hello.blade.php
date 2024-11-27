@@ -24,17 +24,18 @@
             display: flex;
             overflow: hidden;
         }
-        .buttons-container {
+        .sidebar {
             width: 20%;
             background-color: #f1f1f1;
             padding: 20px;
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            float: left; /* Float the sidebar to the left */
         }
-        .buttons-container form {
+        .sidebar form {
             margin-bottom: 20px;
         }
-        .buttons-container form button {
+        .sidebar form button {
             display: block;
             width: 100%;
             padding: 12px 0;
@@ -45,13 +46,14 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .buttons-container form button:hover {
+        .sidebar form button:hover {
             background-color: #0056b3;
         }
         .content-container {
             width: 80%;
             padding: 20px;
             height: 100%;
+            float: left; /* Float the content area to the left */
         }
         iframe {
             border: none;
@@ -63,7 +65,7 @@
 <body>
 
 <div class="container">
-    <div class="buttons-container">
+    <div class="sidebar">
         <form id="user-form" action="/dashboard" method="get" target="content-frame">
             <button type="submit">Manage Users</button>
         </form>

@@ -13,8 +13,14 @@ class DropCartsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('carts');
-    }
+Schema::create('carts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('product_type');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('quantity');
+            $table->timestamps();
+        });    }
 
     /**
      * Reverse the migrations.
@@ -23,13 +29,8 @@ class DropCartsTable extends Migration
      */
     public function down()
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('product_type');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
-            $table->integer('quantity');
-            $table->timestamps();
-        });
+        Schema::dropIfExists('carts');
+
+        
     }
 }

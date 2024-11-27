@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 <section class="section" id="reservation" style="margin-bottom: 30px; background-color: #19160d;">
-    <div class="container" style="margin-top: 120px; padding: 120px 0px; background-image: url(../images/reservation-bg.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+    <div class="container" style="margin-top: 120px; padding: 120px 0px;  background-position: center center; background-repeat: no-repeat; background-size: cover;">
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class="left-text-content" style="margin-bottom: 30px;">

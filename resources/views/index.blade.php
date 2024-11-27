@@ -47,8 +47,8 @@
 
         .animated-title {
             font-size: 3em;
-            color: rgb(193, 20, 20);
-            background-color: #130b0b; /* Add your desired background color */
+            color: rgb(255, 255, 255);
+            background-color: rgb(193, 167, 17); /* Add your desired background color */
             position: absolute;
             top: 0;
             width: 100%;

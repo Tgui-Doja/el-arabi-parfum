@@ -1,5 +1,7 @@
 <?php
 
+use App\Admin\Controllers\AuthController;
+
 return [
 
     /*
@@ -110,7 +112,7 @@ return [
     */
     'auth' => [
 
-        'controller' => App\Admin\Controllers\AuthController::class,
+        'controller' => AuthController::class,
 
         'guard' => 'admin',
 

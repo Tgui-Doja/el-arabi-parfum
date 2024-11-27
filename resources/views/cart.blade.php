@@ -89,8 +89,9 @@
         <tr>
             <th>Product</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th></th>
+            <th>Quantity</th>      
+            <th>Payement</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -107,13 +108,23 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">${{ $details['price'] }}</td>
+                    <td data-th="Price">{{ $details['price'] }}DH</td>
                     <td data-th="Quantity" class="text-center">
                         <input type="number" class="form-control text-center quantity" value="{{ $details['quantity'] }}" min="1"/>
                     </td>
+                    <form action="{{route('payment')}}" method="POST">
+                        
+                    @csrf
+                    <input type="hidden" name="amount" value="200">  
+                    <td>
+                        <button type="submit" class="btn btn-outline-dark ">Pay with PayPal</button>
+                    </td>
+                    </form>
                     <td class="actions">
                         <button class="btn btn-outline-danger btn-sm delete-product">DELETE</button>
                     </td>
+                    
+                  
                 </tr>
             @endforeach
         @endif

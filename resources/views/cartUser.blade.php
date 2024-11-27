@@ -135,62 +135,60 @@
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function() {
-        // Event listener for delete product button click
-        $(".delete-product").click(function(e) {
-            e.preventDefault();
+      $(".delete-product").click(function(e) {
+          e.preventDefault();
+  
+          var ele = $(this); 
+  
+          if (confirm("Do you really want to delete?")) {
+              $.ajax({
+                  url: '{{ route('delete.cart.product') }}',
+                  type: 'DELETE',
+                  data: {
+                      _token: '{{ csrf_token() }}',
+                      id: ele.parents("tr").attr("rowId")
+                  },
+                  success: function(response) {
+                      window.location.reload();
+                  },
+                  error: function(xhr) {
+                      console.log(xhr.responseText); // For debugging
+                  }
+              });
+          }
+      });
+    });
+    $(document).ready(function() {
+    // Event listener for transfer status button click
+    $(".transfer-status").click(function(e) {
+        e.preventDefault();
 
-            var ele = $(this); 
+        var ele = $(this);
+        var rowId = ele.parents("tr").data("id");
 
-            if (confirm("Do you really want to delete?")) {
-                $.ajax({
-                    url: '{{ route('delete.cart.product') }}',
-                    type: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: ele.parents("tr").data("id") // Use data-id attribute
-                    },
-                    success: function(response) {
-                        window.location.reload();
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText); // For debugging
-                    }
-                });
+        // Make AJAX request to transfer status
+        $.ajax({
+            url: '{{ route('transfer.status') }}',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: rowId
+            },
+            success: function(response) {
+                // If successful response, update status on the page
+                if (response.success) {
+                    ele.parents("tr").find(".status").text('Payé');
+                    ele.remove(); // Remove the transfer status button
+                }
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText); // For debugging
             }
         });
     });
-</script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        // Event listener for transfer status button click
-        $(".transfer-status").click(function(e) {
-            e.preventDefault();
+    // Other code...
+});
 
-            var ele = $(this);
-            var rowId = ele.parents("tr").data("id");
-
-            // Make AJAX request to transfer status
-            $.ajax({
-                url: '{{ route('transfer.status') }}',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: rowId
-                },
-                success: function(response) {
-                    // If successful response, update status on the page
-                    if (response.success) {
-                        ele.parents("tr").find(".status").text('Payé');
-                        ele.remove(); // Remove the transfer status button
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText); // For debugging
-                }
-            });
-        });
-    });
-</script>
+  </script>
 @endsection
-

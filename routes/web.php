@@ -20,6 +20,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ContactForm1Controller;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriptionController;
 use OpenAdmin\Admin\Controllers\UserController as ControllersUserController;
 
@@ -124,7 +125,9 @@ Route::prefix('dashboard2')->group(function () {
 
 ////////////////
 
-
+Route::post('pay',[PaymentController::class,'pay'])->name('payment');
+Route::get('success',[PaymentController::class,'success']);
+Route::get('error',[PaymentController::class,'error']);
 ////////////////////////
 Route::get('/reservation',[ReservationController::class,'index']);
 Route::get('/about',[AboutController::class,'index']);

@@ -11,8 +11,11 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.5",
+        "league/omnipay": "^3.2",
+        "omnipay/paypal": "^3.0",
         "open-admin-ext/helpers": "^1.0",
-        "open-admin-org/open-admin": "^1.0"
+        "open-admin-org/open-admin": "^1.0",
+        "paypal/rest-api-sdk-php": "^1.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -60,7 +63,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",

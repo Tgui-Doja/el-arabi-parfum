@@ -61,7 +61,7 @@ public function deleteProductUser(Request $request) {
         $cartUser = session()->get('cartUser');
         if (isset($cartUser[$request->id])) {
             unset($cartUser[$request->id]);
-            session()->put('cartUser', $cartUser);
+            session()->put('cart', $cartUser);
         }
         session()->flash('success', 'Product successfully deleted.');
     }
@@ -76,20 +76,15 @@ public function deleteProductUser(Request $request) {
 public function transferStatus(Request $request)
 {
     if ($request->id) {
-        $cart = session()->get('cart', []);
         $userCart = session()->get('cartUser', []);
 
-        if (isset($cart[$request->id])) {
-            $cart[$request->id]['status'] = 'Payé';
-            session()->put('cart', $cart);
-        }
+       
 
         if (isset($userCart[$request->id])) {
             $userCart[$request->id]['status'] = 'Payé';
             session()->put('cartUser', $userCart);
         }
 
-        return response()->json(['success' => true]);
     }
 
     return response()->json(['success' => false]);
